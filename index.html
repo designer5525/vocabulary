@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背單詞 - 媽媽專用版</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <section id="home-page">
+    <h1>背單詞</h1>
+    <div class="menu-grid">
+        <div class="menu-item" onclick="startLearning('all')">
+            <i class="fas fa-book"></i>
+            <p>背單詞</p>
+        </div>
+        <div class="menu-item" onclick="showFavoritesPage()">
+            <i class="fas fa-star"></i>
+            <p>我的收藏</p>
+        </div>
+        <div class="menu-item" onclick="startTest('en-to-cn')">
+            <i class="fas fa-vial"></i>
+            <p>英文單選測試</p>
+        </div>
+        <div class="menu-item" onclick="startTest('cn-to-en')">
+            <i class="fas fa-spell-check"></i>
+            <p>中文翻譯測試</p>
+        </div>
+        <div class="menu-item" onclick="startLearning('listening')">
+            <i class="fas fa-headphones"></i>
+            <p>聽單詞</p>
+        </div>
+        <div class="menu-item advanced-item" onclick="startListeningAdvanced()">
+            <i class="fas fa-brain"></i>
+            <p>聽力進階版</p>
+        </div>
+    </div>
+</section>
+
+    <section id="card-page" class="hidden">
+        <div class="top-bar">
+            <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
+            <span id="page-title">背單詞</span>
+        </div>
+        
+        <div class="card" id="word-card" onclick="revealTranslation()">
+            <h2 id="word-en">Loading...</h2>
+            <p id="click-hint">點擊查看中文</p>
+            <p id="word-cn" class="hidden">翻譯載入中</p>
+        </div>
+
+        <div class="controls">
+            <button onclick="replayVoice(event)" class="circle-btn"><i class="fas fa-volume-up"></i></button>
+            <button onclick="nextWord()" class="main-btn">下一個</button>
+            <button id="fav-btn" onclick="toggleFavorite(event)" class="circle-btn"><i class="far fa-star"></i></button>
+        </div>
+    </section>
+
+    <section id="favorites-list-page" class="hidden">
+        <div class="top-bar">
+            <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
+            <span>我的收藏</span>
+        </div>
+        <div id="fav-list-container"></div>
+        <button onclick="startLearning('fav')" class="review-btn">開始複習</button>
+    </section>
+
+    <section id="test-page" class="hidden">
+        <div class="top-bar">
+            <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
+            <span id="test-title">測試</span>
+            <span id="test-score">分數: 0</span>
+        </div>
+        
+        <div class="test-container">
+            <p class="test-progress">第 <span id="q-number">1</span> / 20 題</p>
+            <div class="question-box">
+                <h2 id="question-text">Question</h2>
+                <button id="test-voice-btn" onclick="replayTestVoice()" class="voice-small-btn hidden">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+            <div id="options-container"></div>
+            <div class="test-controls">
+                <button onclick="resetTest()" class="reset-btn">重新開始</button>
+                <button id="next-q-btn" onclick="nextQuestion()" class="main-btn" disabled>下一題</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="result-page" class="hidden">
+        <div class="result-container">
+            <i class="fas fa-trophy trophy-icon"></i>
+            <h2>測試完成！</h2>
+            <div class="final-score-box">
+                <p>最終得分</p>
+                <h1 id="final-score-text">100</h1>
+            </div>
+            <p id="result-comment">太棒了！繼續加油！</p>
+            <button onclick="goHome()" class="review-btn">返回主頁</button>
+        </div>
+    </section>
+
+    <section id="listening-advanced-page" class="hidden">
+    <div class="header">
+        <button onclick="goHome()">返回</button>
+        <h2 id="adv-test-title">聽力背單詞進階版</h2>
+        <div id="adv-test-score" class="score-text">分數: 0</div>
+    </div>
+
+    <div class="test-container">
+        <p class="q-count">第 <span id="adv-q-number">1</span> / 20 題</p>
+        
+        <div class="question-box">
+            <h1 id="adv-question-text" class="main-word">---</h1>
+            <button class="audio-btn" onclick="replayAdvVoice()">🔊</button>
+        </div>
+
+        <div id="adv-controls" class="adv-controls-container">
+            <button id="btn-reveal-adv" class="btn-main-reveal" onclick="revealAdvAnswer()">我想好了</button>
+            
+            <div id="adv-judge-btns" class="hidden-btns hidden">
+                <button class="btn-judge correct" onclick="handleAdvJudge(true)">我答對了</button>
+                <button class="btn-judge wrong" onclick="handleAdvJudge(false)">我答錯了</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script src="script.js"></script>
+</body>
+</html>

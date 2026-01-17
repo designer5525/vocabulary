@@ -1,0 +1,140 @@
+:root { --primary: #4a90e2; --bg: #f5f7fa; --text: #333; }
+body { font-family: -apple-system, sans-serif; background-color: var(--bg); margin: 0; display: flex; justify-content: center; }
+section { width: 100%; max-width: 500px; padding: 20px; box-sizing: border-box; min-height: 100vh; }
+.hidden { display: none !important; }
+
+h1 { text-align: center; margin-top: 30px; font-size: 2rem; color: var(--text); }
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.menu-item { background: white; padding: 25px 10px; border-radius: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; }
+.menu-item i { font-size: 1.8rem; color: var(--primary); margin-bottom: 8px; display: block; }
+.menu-item p { margin: 0; font-weight: bold; }
+
+.card { background: white; margin: 30px 0; padding: 50px 20px; border-radius: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; min-height: 200px; }
+#word-en { font-size: 3rem; font-weight: 900; margin: 0; }
+#word-cn { font-size: 1.8rem; color: var(--primary); margin-top: 20px; font-weight: bold; }
+#click-hint { color: #aaa; margin-top: 20px; }
+
+.controls { display: flex; justify-content: space-around; align-items: center; }
+.circle-btn { width: 60px; height: 60px; border-radius: 50%; border: none; background: white; font-size: 1.5rem; color: #666; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.main-btn { padding: 15px 35px; border-radius: 50px; border: none; background: var(--primary); color: white; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+
+.top-bar { display: flex; align-items: center; gap: 10px; padding-bottom: 15px; border-bottom: 1px solid #ddd; }
+.back-btn { background: none; border: none; font-size: 1rem; color: var(--primary); cursor: pointer; }
+#test-score { margin-left: auto; color: #e67e22; font-weight: bold; }
+
+/* 測試題目與語音按鈕 */
+.question-box { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px; }
+#question-text { font-size: 2.5rem; margin: 0; color: var(--text); }
+.voice-small-btn { background: #ebf4ff; border: none; width: 45px; height: 45px; border-radius: 50%; color: var(--primary); cursor: pointer; font-size: 1.2rem; }
+
+/* 測試選項 */
+.option-card { background: white; padding: 18px; margin-bottom: 12px; border-radius: 15px; border: 2px solid #e1e8ed; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; cursor: pointer; font-weight: 500; }
+.option-card.correct { border-color: #2ecc71; background-color: #f0fff4; }
+.option-card.wrong { border-color: #e74c3c; background-color: #fff5f5; }
+.option-card.disabled { pointer-events: none; }
+.status-icon .fa-check { color: #2ecc71; }
+.status-icon .fa-times { color: #e74c3c; }
+
+.test-controls { display: flex; justify-content: space-between; margin-top: 20px; }
+.reset-btn { background: #95a5a6; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; }
+.review-btn { width: 100%; padding: 15px; background: #2ecc71; color: white; border: none; border-radius: 15px; font-size: 1.2rem; margin-top: 20px; cursor: pointer; }
+
+/* 結果頁面 */
+.result-container { text-align: center; padding-top: 50px; }
+.trophy-icon { font-size: 5rem; color: #f1c40f; margin-bottom: 20px; }
+.final-score-box { background: white; padding: 30px; border-radius: 20px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.final-score-box p { margin: 0; color: #888; font-size: 1.2rem; }
+.final-score-box h1 { margin: 10px 0; font-size: 4rem; color: #e67e22; }
+#result-comment { font-size: 1.3rem; font-weight: bold; color: #555; margin-bottom: 30px; }
+
+.fav-item { background: white; padding: 15px; border-radius: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; border: 1px solid #eee; }
+
+/* --- 聽力進階版入口專屬樣式 --- */
+.menu-item.advanced-item {
+    background: #f8f0ff; /* 淺紫色背景，區別普通測試 */
+    border: 1px solid #dcd0ff;
+}
+.menu-item.advanced-item i {
+    color: #8e44ad; /* 紫色圖示 */
+}
+
+/* --- 聽力進階版頁面佈局 --- */
+#adv-test-score {
+    margin-left: auto;
+    color: #e67e22;
+    font-weight: bold;
+}
+
+/* 題目顯示區域複用 .card 的樣式但微調 */
+.adv-question-card {
+    background: white;
+    margin: 20px 0;
+    padding: 40px 20px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 進階版控制按鈕區 */
+.adv-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 「我想好了」大按鈕 */
+.btn-main-reveal {
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.btn-main-reveal:active {
+    transform: scale(0.98);
+}
+
+/* 答對/答錯 按鈕並排容器 */
+.hidden-btns {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.btn-judge {
+    flex: 1;
+    padding: 18px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-judge.correct {
+    background-color: #2ecc71; /* 綠色 */
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+}
+
+.btn-judge.wrong {
+    background-color: #e74c3c; /* 紅色 */
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+}
+
+.btn-judge:active {
+    opacity: 0.8;
+}

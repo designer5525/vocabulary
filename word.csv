@@ -1,0 +1,84 @@
+Claim                , 聲稱           , 1
+Registered           , 登記           , 1
+Vote                 , 投票           , 1
+Owe taxes            , 欠稅           , 1
+Pay taxes            , 納稅           , 1
+Provide              , 提供           , 1
+update               , 更新           , 1
+Support              , 支持           , 1
+Understand           , 理解           , 1
+Willing              , 願意           , 1
+promise              , 承諾           , 1
+submit               , 提交           , 1
+current              , 當前的         , 1
+eligible             , 有資格的       , 1
+Application          , 申請           , 1
+eligibility          , 資格           , 1
+Bear arms            , 持武器         , 2
+Terrorist            , 恐怖分子       , 2
+Sabotage             , 蓄意破壞       , 2
+Weapon               , 武器           , 2
+Explosive            , 炸藥           , 2
+Kidnapping           , 綁架           , 2
+threaten             , 威脅           , 2
+Assassination        , 暗殺           , 2
+Torture              , 酷刑           , 2
+Genocide             , 種族滅絕       , 2
+recruit              , 招募           , 2
+Kill                 , 殺害           , 2
+Injure               , 傷害           , 2
+Crime                , 犯罪/違法行為  , 2
+Illegal drugs        , 毒品           , 2
+Smuggled             , 走私           , 2
+enter                , 進入           , 2
+Illegally            , 非法           , 2
+Noncombatant         , 非戰鬥         , 2
+Organization         , 組織/團體      , 3
+Communist            , 共產黨/共產主義, 3
+Communism            , 共產黨/共產主義, 3
+Totalitarian         , 極權政黨       , 3
+Totalitarian Party   , 極權政黨       , 3
+Overthrow            , 推翻           , 3
+Police unit          , 警察部隊       , 3
+Public benefit       , 公共福利       , 3
+Constitution         , 憲法           , 3
+Form of Government   , 美國政府形式   , 3
+Oath of Allegiance   , 效忠誓言       , 3
+naturalization       , 入籍           , 3
+Prison               , 監獄           , 4
+Jail                 , 監獄           , 4
+Labor camp           , 勞改營/勞動營  , 4
+Military             , 軍隊           , 4
+Deportation          , 驅逐出境       , 4
+Training             , 訓練           , 4
+Removed              , 遣返           , 4
+Detained             , 被拘留         , 4
+Arrested             , 被逮捕         , 4
+Convicted            , 被定罪         , 4
+Nonresident          , 非居民         , 5
+Nonresident alien    , 非居民外僑     , 5
+Alien                , 外國人/外僑    , 5
+person               , 人             , 5
+Prostitution         , 賣淫者/賣淫    , 5
+Prostitute           , 賣淫者/賣淫    , 5
+Gamble               , 賭博           , 5
+Gambling             , 賭博           , 5
+FALSE                , 虛假           , 5
+Truth                , 真相           , 5
+Lie                  , 說謊           , 5
+Habitual drunkard    , 習慣性酗酒者   , 5
+Polygamy             , 多配偶制       , 5
+Anywhere in the world, 世界任何地方   , 6
+previous             , 之前的         , 6
+previously           , 之前的         , 6
+purpose              , 目的           , 6
+reason               , 原因           , 6
+basis                , 基準           , 6
+nationality          , 國籍           , 6
+spouse               , 配偶           , 6
+Marital status       , 婚姻狀態       , 6
+trip                 , 旅程           , 6
+travel               , 旅行           , 6
+travel aboard        , 出國旅行       , 6
+vacation             , 假日           , 6
+Ethnicity            , 種族           , 6
