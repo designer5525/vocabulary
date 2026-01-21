@@ -83,7 +83,7 @@ function renderGenduList(type, containerId) {
             <div class="gendu-card" onclick="speak('${item.content.replace(/'/g, "\\'")}')">
                 <div class="gendu-text">
                     <p class="gendu-extra">問：${item.extra} (${item.translation2})</p>
-                    <p class="gendu-content">${item.content}</p>
+                     <p class="gendu-content">${item.content} (${item.translation})</p>
                 </div>
                 <button class="fav-icon-btn" onclick="toggleGenduFav(event, '${item.content.replace(/'/g, "\\'")}')">
                     <i class="${isFav ? 'fas' : 'far'} fa-star"></i>
