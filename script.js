@@ -1,5 +1,8 @@
 // --- 全域變數 ---
 let allWords = [];
+let genduAll = []; // 存儲 gendu.csv 的所有數據
+let genduFavorites = JSON.parse(localStorage.getItem('genduFavs')) || [];
+let currentFavTab = 'word';
 let favorites = JSON.parse(localStorage.getItem('favWords')) || [];
 let currentList = [];
 let currentIndex = 0;
@@ -28,19 +31,82 @@ function speak(text) {
 // --- 初始化與 CSV ---
 async function loadCSV() {
     try {
-        const response = await fetch('word.csv');
-        const data = await response.text();
-        allWords = data.split(/\r?\n/)
+        // 加載單詞庫
+        const resWord = await fetch('word.csv');
+        const dataWord = await resWord.text();
+        allWords = dataWord.split(/\r?\n/)
             .filter(line => line.trim() !== '' && line.includes(','))
             .map(line => {
                 const parts = line.split(',');
-                return { 
-                    en: parts[0].trim(), 
-                    cn: parts[1].trim(), 
-                    cat: parseInt(parts[2].trim()) // 讀取第三欄的類別編號
+                return { en: parts[0].trim(), cn: parts[1].trim(), cat: parseInt(parts[2].trim()) };
+            });
+
+        // 加載跟讀庫 (Type,Content,Translation,Extra,Translation2)
+        const resGendu = await fetch('gendu.csv');
+        const dataGendu = await resGendu.text();
+        genduAll = dataGendu.split(/\r?\n/)
+            .filter(line => line.trim() !== '' && line.includes(','))
+            .map(line => {
+                // 處理可能包含引號的 CSV 格式
+                const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+                const clean = parts.map(p => p.replace(/^"|"$/g, '').trim());
+                return {
+                    type: clean[0],        // duanyu 或 juzi
+                    content: clean[1],     // 核心英文內容
+                    translation: clean[2], // 中文翻譯
+                    extra: clean[3],       // 提問/額外英文
+                    translation2: clean[4] // 額外中文翻譯
                 };
             });
-    } catch (err) { console.error("CSV 加載失敗", err); }
+        console.log("數據加載完成");
+    } catch (err) { console.error("加載失敗", err); }
+}
+
+// --- 跟讀模塊邏輯 ---
+function startDuanyu() {
+    renderGenduList('duanyu', 'duanyu-list');
+    switchPage('duanyu-screen');
+}
+function startJuzi() {
+    renderGenduList('juzi', 'juzi-list');
+    switchPage('juzi-screen');
+}
+
+// 渲染列表：依照您的截圖要求進行佈局
+function renderGenduList(type, containerId) {
+    const container = document.getElementById(containerId);
+    const data = genduAll.filter(item => item.type === type);
+    
+    container.innerHTML = data.map(item => {
+        const isFav = genduFavorites.some(f => f.content === item.content);
+        return `
+            <div class="gendu-card" onclick="speak('${item.content.replace(/'/g, "\\'")}')">
+                <div class="gendu-text">
+                    <p class="gendu-extra">問：${item.extra} (${item.translation2})</p>
+                    <p class="gendu-content">${item.content}</p>
+                </div>
+                <button class="fav-icon-btn" onclick="toggleGenduFav(event, '${item.content.replace(/'/g, "\\'")}')">
+                    <i class="${isFav ? 'fas' : 'far'} fa-star"></i>
+                </button>
+            </div>
+        `;
+    }).join('');
+}
+
+// 跟讀收藏邏輯
+function toggleGenduFav(event, content) {
+    event.stopPropagation();
+    const item = genduAll.find(g => g.content === content);
+    const idx = genduFavorites.findIndex(f => f.content === content);
+    
+    if (idx > -1) {
+        genduFavorites.splice(idx, 1);
+        event.target.closest('i').className = 'far fa-star';
+    } else {
+        genduFavorites.push(item);
+        event.target.closest('i').className = 'fas fa-star';
+    }
+    localStorage.setItem('genduFavs', JSON.stringify(genduFavorites));
 }
 
 // --- 學習模塊邏輯 ---
@@ -177,10 +243,61 @@ function updateFavBtnUI(wordEn) {
 // --- 5. 模塊二：我的收藏列表 ---
 function showFavoritesPage() {
     switchPage('favorites-list-page');
+    // 預設切換到 'word' 標籤
+    switchFavTab('word'); 
+}
+
+// 核心：切換標籤與渲染邏輯
+function switchFavTab(tab) {
+    currentFavTab = tab;
+    
+    // 1. 更新按鈕樣式
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.innerText.includes(tab === 'word' ? '單詞' : '跟讀')) {
+            btn.classList.add('active');
+        }
+    });
+
     const container = document.getElementById('fav-list-container');
-    container.innerHTML = favorites.length ? 
-        favorites.map(f => `<div class="fav-item"><strong>${f.en}</strong><span>${f.cn}</span></div>`).join('') :
-        '<p style="text-align:center;color:#888;margin-top:20px;">尚無收藏單詞</p>';
+    const reviewBtn = document.getElementById('start-fav-review-btn');
+
+    if (tab === 'word') {
+        // 顯示單詞收藏列表
+        reviewBtn.style.display = 'block';
+        if (favorites.length === 0) {
+            container.innerHTML = '<p class="empty-msg">尚無單詞收藏</p>';
+        } else {
+            container.innerHTML = favorites.map((word, idx) => `
+                <div class="fav-item">
+                    <div>
+                        <p class="fav-en">${word.en}</p>
+                        <p class="fav-cn">${word.cn}</p>
+                    </div>
+                    <div class="fav-actions">
+                        <button onclick="speak('${word.en.replace(/'/g, "\\'")}')" class="voice-btn">🔊</button>
+                        <button onclick="removeFavorite(${idx})" class="del-btn">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    } else {
+        // 顯示跟讀內容收藏列表 (採用您要求的列表卡片設計)
+        reviewBtn.style.display = 'none';
+        if (genduFavorites.length === 0) {
+            container.innerHTML = '<p class="empty-msg">尚無跟讀收藏</p>';
+        } else {
+            container.innerHTML = genduFavorites.map(item => `
+                <div class="gendu-card" onclick="speak('${item.content.replace(/'/g, "\\'")}')">
+                    <div class="gendu-text">
+                        <p class="gendu-extra">問：${item.extra}</p>
+                        <p class="gendu-content">${item.content}</p>
+                    </div>
+                    <i class="fas fa-volume-up" style="color: #4a90e2"></i>
+                </div>
+            `).join('');
+        }
+    }
 }
 
 // --- 6. 模塊三 & 四：測試邏輯 ---

@@ -1,9 +1,11 @@
 :root { --primary: #4a90e2; --bg: #f5f7fa; --text: #333; }
 body { font-family: -apple-system, sans-serif; background-color: var(--bg); margin: 0; display: flex; justify-content: center; }
-section { width: 100%; max-width: 500px; padding: 20px; box-sizing: border-box; min-height: 100vh; }
+section { width: 100%; max-width: 70%; padding: 20px; box-sizing: border-box; min-height: 100vh; }
 .hidden { display: none !important; }
+#home-page { max-width: 50%; }
 
 h1 { text-align: center; margin-top: 30px; font-size: 2rem; color: var(--text); }
+h2 { text-align: center;font-size: 1.5rem; color: var(--text); margin-bottom: 15px; }
 .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
 .menu-item { background: white; padding: 25px 10px; border-radius: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); cursor: pointer; }
 .menu-item i { font-size: 1.8rem; color: var(--primary); margin-bottom: 8px; display: block; }
@@ -137,4 +139,71 @@ h1 { text-align: center; margin-top: 30px; font-size: 2rem; color: var(--text); 
 
 .btn-judge:active {
     opacity: 0.8;
+}
+
+/* --- 句子跟讀頁面樣式 --- */
+/* 列表容器 */
+.gendu-container {
+    padding: 5px;
+    height: 75vh;        /* 限制高度為螢幕高度的 70%，你可以根據需要調整 */
+    overflow-y: auto;    /* 超出部分自動顯示滾動條 */
+    border-radius: 15px; /* 讓容器邊角圓滑一點，更美觀 */
+    
+}
+
+/* 跟讀卡片 */
+.gendu-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+.gendu-text { flex: 1; }
+
+/* 第一行：小字、灰色 */
+.gendu-extra {
+    margin: 0 0 2px 0;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* 第二行：粗體、內容 */
+.gendu-content {
+    margin: 0; /* 清除預設間隔 */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* 收藏星號按鈕 */
+.fav-icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #f1c40f;
+    padding-left: 10px;
+}
+
+/* 標籤切換 */
+.fav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: #eee;
+    border-radius: 20px;
+}
+.tab-btn.active {
+    background: #3498db;
+    color: white;
 }

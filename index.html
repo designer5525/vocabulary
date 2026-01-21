@@ -10,7 +10,7 @@
 <body>
 
     <section id="home-page">
-    <h1>背單詞</h1>
+    <h1>單詞/短語/讀音特訓</h1>
     <div class="menu-grid">
         <div class="menu-item" onclick="startLearning('all')">
             <i class="fas fa-book"></i>
@@ -37,6 +37,18 @@
             <p>聽力進階版</p>
         </div>
     </div>
+    <h2>跟讀練習</h2>
+     <div class="menu-grid">
+        <div class="menu-item" onclick="startDuanyu()">
+            <i class="fa-brands fa-freebsd "></i>
+            <p>短語</p>
+        </div>
+        <div class="menu-item" onclick="startJuzi()">
+            <i class="fa-solid fa-file-word"></i>
+            <p>句子</p>
+        </div>
+       
+    </div>
 </section>
 
     <section id="card-page" class="hidden">
@@ -58,14 +70,18 @@
         </div>
     </section>
 
-    <section id="favorites-list-page" class="hidden">
-        <div class="top-bar">
-            <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
-            <span>我的收藏</span>
-        </div>
-        <div id="fav-list-container"></div>
-        <button onclick="startLearning('fav')" class="review-btn">開始複習</button>
-    </section>
+ <section id="favorites-list-page" class="hidden">
+    <div class="top-bar">
+        <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
+        <span>我的收藏</span>
+    </div>
+    <div class="fav-tabs">
+        <button class="tab-btn active" onclick="switchFavTab('word')">單詞</button>
+        <button class="tab-btn" onclick="switchFavTab('gendu')">跟讀內容</button>
+    </div>
+    <div id="fav-list-container"></div>
+    <button id="start-fav-review-btn" onclick="startLearning('fav')" class="review-btn">開始複習</button>
+</section>
 
     <section id="test-page" class="hidden">
         <div class="top-bar">
@@ -127,6 +143,22 @@
             </div>
         </div>
     </div>
+    </section>
+
+   <section id="duanyu-screen" class="hidden">
+    <div class="top-bar">
+        <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
+        <span>短語跟讀練習</span>
+    </div>
+    <div class="gendu-container" id="duanyu-list"></div>
+</section>
+
+<section id="juzi-screen" class="hidden">
+    <div class="top-bar">
+        <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
+        <span>句子跟讀練習</span>
+    </div>
+    <div class="gendu-container" id="juzi-list"></div>
 </section>
 
     <script src="script.js"></script>
