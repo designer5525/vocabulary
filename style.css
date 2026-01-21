@@ -3,6 +3,11 @@ body { font-family: -apple-system, sans-serif; background-color: var(--bg); marg
 section { width: 100%; max-width: 70%; padding: 20px; box-sizing: border-box; min-height: 100vh; }
 .hidden { display: none !important; }
 #home-page { max-width: 50%; }
+@media (min-width: 768px) {
+    #home-page {
+        max-width: 50%; /* 電腦螢幕佔 50% */
+    }
+}
 
 h1 { text-align: center; margin-top: 30px; font-size: 2rem; color: var(--text); }
 h2 { text-align: center;font-size: 1.5rem; color: var(--text); margin-bottom: 15px; }
