@@ -1,6 +1,6 @@
 :root { --primary: #4a90e2; --bg: #f5f7fa; --text: #333; }
 body { font-family: -apple-system, sans-serif; background-color: var(--bg); margin: 0; display: flex; justify-content: center; }
-section { width: 100%; max-width: 70%; padding: 20px; box-sizing: border-box; min-height: 100vh; }
+section { width: 100%; max-width: 85%; padding: 20px; box-sizing: border-box; min-height: 100vh; }
 .hidden { display: none !important; }
 #home-page { max-width: 90%; }
 @media (min-width: 768px) {
