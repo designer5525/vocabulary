@@ -2,7 +2,7 @@
 body { font-family: -apple-system, sans-serif; background-color: var(--bg); margin: 0; display: flex; justify-content: center; }
 section { width: 100%; max-width: 70%; padding: 20px; box-sizing: border-box; min-height: 100vh; }
 .hidden { display: none !important; }
-#home-page { max-width: 50%; }
+#home-page { max-width: 90%; }
 @media (min-width: 768px) {
     #home-page {
         max-width: 50%; /* 電腦螢幕佔 50% */
