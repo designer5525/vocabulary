@@ -72,20 +72,44 @@ function startJuzi() {
     switchPage('juzi-screen');
 }
 
+//---- 翻譯模塊----
+function startFanyi() {
+    renderGenduList('fanyi', 'fanyi-list');
+    switchPage('fanyi-screen');
+}
+
 // 渲染列表：依照您的截圖要求進行佈局
+
 function renderGenduList(type, containerId) {
     const container = document.getElementById(containerId);
     const data = genduAll.filter(item => item.type === type);
     
     container.innerHTML = data.map(item => {
         const isFav = genduFavorites.some(f => f.content === item.content);
+        const escapedContent = item.content.replace(/'/g, "\\'");
+
+        // --- 根據類型決定內容模板 ---
+        let contentHtml = '';
+        if (type === 'fanyi') {
+            // 翻譯模塊：隱藏 content 原文，只顯示翻譯
+            contentHtml = `
+                <p class="gendu-extra">問：${item.extra} (${item.translation2})</p>
+                <p class="gendu-content">${item.translation}</p>
+            `;
+        } else {
+            // 跟讀模塊（duanyu, juzi）：顯示原文 + 翻譯
+            contentHtml = `
+                <p class="gendu-extra">問：${item.extra} (${item.translation2})</p>
+                <p class="gendu-content">${item.content} (${item.translation})</p>
+            `;
+        }
+
         return `
-            <div class="gendu-card" onclick="speak('${item.content.replace(/'/g, "\\'")}')">
+            <div class="gendu-card" onclick="speak('${escapedContent}')">
                 <div class="gendu-text">
-                    <p class="gendu-extra">問：${item.extra} (${item.translation2})</p>
-                     <p class="gendu-content">${item.content} (${item.translation})</p>
+                    ${contentHtml}
                 </div>
-                <button class="fav-icon-btn" onclick="toggleGenduFav(event, '${item.content.replace(/'/g, "\\'")}')">
+                <button class="fav-icon-btn" onclick="toggleGenduFav(event, '${escapedContent}')">
                     <i class="${isFav ? 'fas' : 'far'} fa-star"></i>
                 </button>
             </div>

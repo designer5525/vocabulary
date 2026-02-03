@@ -47,7 +47,10 @@
             <i class="fa-solid fa-file-word"></i>
             <p>句子</p>
         </div>
-       
+       <div class="menu-item" onclick="startFanyi()">
+            <i class="fa-solid fa-file-word"></i>
+            <p>翻譯練習</p>
+        </div>
     </div>
 </section>
 
@@ -159,6 +162,14 @@
         <span>句子跟讀練習</span>
     </div>
     <div class="gendu-container" id="juzi-list"></div>
+</section>
+
+<section id="fanyi-screen" class="hidden">
+    <div class="top-bar">
+        <button onclick="goHome()" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</button>
+        <span>翻譯練習</span>
+    </div>
+    <div class="gendu-container" id="fanyi-list"></div>
 </section>
 
     <script src="script.js"></script>
