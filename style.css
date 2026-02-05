@@ -177,6 +177,27 @@ h2 { text-align: center;font-size: 1.5rem; color: var(--text); margin-bottom: 15
     font-size: 0.85rem;
     color: #888;
 }
+.gendu-extra-hidden {
+    margin: 0 0 2px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* 1. 平常的狀態：字體白色，隱藏在白色背景中 */
+.fanyi-q-text {
+    color: white;
+    background: transparent;
+    transition: background 0.3s ease; /* 增加一個平滑的過渡感 */
+    cursor: help; /* 讓用戶知道這裡可以互動 */
+}
+
+/* 2. 當滑鼠移上去 (Hover) 的狀態：顯示深色背景 */
+.fanyi-q-text:hover {
+    background: #333333; /* 深灰色背景，讓白字極其明顯 */
+    border-radius: 4px;  /* 加一點圓角比較美觀 */
+}
+
 
 /* 第二行：粗體、內容 */
 .gendu-content {

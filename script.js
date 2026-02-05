@@ -1,6 +1,6 @@
 // --- 全域變數 ---
 let allWords = [];
-let genduAll = []; // 存儲 gendu.csv 的所有數據
+let genduAll = []; 
 let genduFavorites = JSON.parse(localStorage.getItem('genduFavs')) || [];
 let currentFavTab = 'word';
 let favorites = JSON.parse(localStorage.getItem('favWords')) || [];
@@ -93,7 +93,7 @@ function renderGenduList(type, containerId) {
         if (type === 'fanyi') {
             // 翻譯模塊：隱藏 content 原文，只顯示翻譯
             contentHtml = `
-                <p class="gendu-extra">問：${item.extra} (${item.translation2})</p>
+                <p class="gendu-extra-hidden"><span class="fanyi-q-text">${item.content}</span></p>
                 <p class="gendu-content">${item.translation}</p>
             `;
         } else {
