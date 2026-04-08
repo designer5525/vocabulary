@@ -1,13 +1,13 @@
 {
-  "name": "N-400 入籍聽力助手",
-  "short_name": "N400助手",
+  "name": "背單詞",
+  "short_name": "背單詞",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4A90E2",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "icon-word.png",
       "sizes": "192x192",
       "type": "image/png"
     }
